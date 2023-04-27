@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { addAnecdoteAction } from "../../redux/actions/anecdoteAction";
+import { useDispatch } from "react-redux";
 
-const AnecdoteForm = ({ handleAddAnecdote, setNewAnecdote, newAnecdote }) => {
+const AnecdoteForm = () => {
+  const [newAnecdote, setNewAnecdote] = useState("");
+  const dispatch = useDispatch();
+
+  const handleAddAnecdote = (event) => {
+    event.preventDefault();
+    dispatch(addAnecdoteAction(newAnecdote));
+    setNewAnecdote("");
+  };
+
   return (
     <div>
       <form onSubmit={handleAddAnecdote}>
