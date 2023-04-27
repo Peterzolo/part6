@@ -1,15 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import "../anecdotes/Anecdotes.css";
 
 const Anecdote = () => {
+  const anecdotes = useSelector((state) => state.anecdotes);
+
   return (
-    <div>
+    <div className="container">
       <h2>Anecdotes</h2>
       {anecdotes.map((anecdote) => (
         <div key={anecdote.id}>
           <div>{anecdote.content}</div>
-          <div>
+          <div className="vote-counts">
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button>vote</button>
+            {/* <button onClick={() => vote(anecdote.id)}>vote</button> */}
           </div>
         </div>
       ))}
