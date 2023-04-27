@@ -12,8 +12,6 @@ const asObject = (anecdote) => {
 };
 const anecdotes = anecdotesAtStart.map(asObject);
 
-console.log("ANECDOTES", anecdotes);
-
 export const fetchAnecdotes = () => {
   return {
     type: FETCH_ANECDOTES,
@@ -21,9 +19,11 @@ export const fetchAnecdotes = () => {
   };
 };
 
-export const voteAnecdote = (id) => {
+export const voteAnecdoteAction = (id) => {
   return {
     type: VOTE_ANECDOTE,
-    payload: id,
+    data: {
+      id,
+    },
   };
 };

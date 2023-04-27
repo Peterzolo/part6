@@ -1,12 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "../anecdotes/Anecdotes.css";
-import { fetchAnecdotes } from "../../redux/actions/anecdoteAction";
+import {
+  fetchAnecdotes,
+  voteAnecdoteAction,
+} from "../../redux/actions/anecdoteAction";
 
 const Anecdote = () => {
   const { anecdotes } = useSelector((state) => state.anecdotes);
+  const [content, setContent] = useState("");
   const dispatch = useDispatch();
+
+  const handleVote = (id) => {
+    dispatch(voteAnecdoteAction(id));
+  };
 
   useEffect(() => {
     dispatch(fetchAnecdotes());
@@ -22,8 +30,12 @@ const Anecdote = () => {
             <div className="content">{anecdote.content}</div>
             <div className="vote-counts-wrap">
               has <span className="count"> {anecdote.votes} </span>
-              <button className="vote-btn">vote</button>
-              {/* <button onClick={() => vote(anecdote.id)}>vote</button> */}
+              <button
+                className="vote-btn"
+                onClick={() => handleVote(anecdote.id)}
+              >
+                vote
+              </button>
             </div>
           </div>
         ))}
@@ -32,7 +44,7 @@ const Anecdote = () => {
       <h2>create new</h2>
       <form>
         <div>
-          <input />
+          <input type="text" value={content} />
         </div>
         <button>create</button>
       </form>
