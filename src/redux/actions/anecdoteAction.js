@@ -1,5 +1,9 @@
 import { anecdotesAtStart } from "../../components/anecdotes/data";
-import { FETCH_ANECDOTES, VOTE_ANECDOTE } from "../type/anecdotes";
+import {
+  ADD_ANECDOTE,
+  FETCH_ANECDOTES,
+  VOTE_ANECDOTE,
+} from "../type/anecdotes";
 
 const getId = () => (100000 * Math.random()).toFixed(0);
 
@@ -24,6 +28,15 @@ export const voteAnecdoteAction = (id) => {
     type: VOTE_ANECDOTE,
     data: {
       id,
+    },
+  };
+};
+
+export const addAnecdoteAction = (content) => {
+  return {
+    type: ADD_ANECDOTE,
+    data: {
+      content,
     },
   };
 };

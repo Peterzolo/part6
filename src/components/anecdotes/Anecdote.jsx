@@ -3,17 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "../anecdotes/Anecdotes.css";
 import {
+  addAnecdoteAction,
   fetchAnecdotes,
   voteAnecdoteAction,
 } from "../../redux/actions/anecdoteAction";
 
 const Anecdote = () => {
   const { anecdotes } = useSelector((state) => state.anecdotes);
-  const [content, setContent] = useState("");
+  const [newAnecdote, setNewAnecdote] = useState("");
   const dispatch = useDispatch();
 
   const handleVote = (id) => {
     dispatch(voteAnecdoteAction(id));
+  };
+
+  const handleAddAnecdote = (event) => {
+    event.preventDefault();
+    dispatch(addAnecdoteAction(newAnecdote));
+    setNewAnecdote("");
   };
 
   useEffect(() => {
@@ -42,9 +49,13 @@ const Anecdote = () => {
       </div>
 
       <h2>create new</h2>
-      <form>
+      <form onSubmit={handleAddAnecdote}>
         <div>
-          <input type="text" value={content} />
+          <input
+            type="text"
+            value={newAnecdote}
+            onChange={(e) => setNewAnecdote(e.target.value)}
+          />
         </div>
         <button>create</button>
       </form>
