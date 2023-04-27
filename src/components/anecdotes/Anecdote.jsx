@@ -7,6 +7,7 @@ import {
   fetchAnecdotes,
   voteAnecdoteAction,
 } from "../../redux/actions/anecdoteAction";
+import AnecdoteForm from "./AnecdoteForm";
 
 const Anecdote = () => {
   const { anecdotes } = useSelector((state) => state.anecdotes);
@@ -52,16 +53,11 @@ const Anecdote = () => {
       </div>
 
       <h2>create new</h2>
-      <form onSubmit={handleAddAnecdote}>
-        <div>
-          <input
-            type="text"
-            value={newAnecdote}
-            onChange={(e) => setNewAnecdote(e.target.value)}
-          />
-        </div>
-        <button>create</button>
-      </form>
+      <AnecdoteForm
+        handleAddAnecdote={handleAddAnecdote}
+        setNewAnecdote={setNewAnecdote}
+        newAnecdote={newAnecdote}
+      />
     </div>
   );
 };
