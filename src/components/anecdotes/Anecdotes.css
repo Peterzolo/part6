@@ -5,7 +5,7 @@
   border-radius: 5px;
 }
 
-.vote-counts {
+.vote-counts-wrap {
   background-color: white;
   width: 200px;
   padding: 10px;
@@ -29,4 +29,9 @@
   color: white;
   border: none;
   border-radius: 10px;
+}
+
+.count {
+  color: #d46b08;
+  font-weight: 700;
 }
