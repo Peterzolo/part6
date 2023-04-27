@@ -32,9 +32,9 @@ export const anecdoteReducer = (state = initialState, action) => {
       };
       return {
         ...state,
-        anecdotes: state.anecdotes.map((anecdote) =>
-          anecdote.id !== id ? anecdote : updatedAnecdote
-        ),
+        anecdotes: state.anecdotes
+          .map((anecdote) => (anecdote.id !== id ? anecdote : updatedAnecdote))
+          .sort((a, b) => b.votes - a.votes),
       };
 
     case ADD_ANECDOTE:

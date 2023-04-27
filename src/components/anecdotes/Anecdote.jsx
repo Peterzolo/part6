@@ -10,6 +10,9 @@ import {
 
 const Anecdote = () => {
   const { anecdotes } = useSelector((state) => state.anecdotes);
+
+  console.log("ANECDOTES", typeof anecdotes);
+
   const [newAnecdote, setNewAnecdote] = useState("");
   const dispatch = useDispatch();
 

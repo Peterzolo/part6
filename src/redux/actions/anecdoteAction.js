@@ -19,7 +19,7 @@ const anecdotes = anecdotesAtStart.map(asObject);
 export const fetchAnecdotes = () => {
   return {
     type: FETCH_ANECDOTES,
-    payload: anecdotes,
+    payload: anecdotes.sort((a, b) => b.votes - a.votes),
   };
 };
 
