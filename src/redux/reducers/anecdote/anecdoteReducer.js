@@ -1,26 +1,21 @@
 /* eslint-disable indent */
 
-import { anecdotesAtStart } from "../../../components/anecdotes/data";
+// eslint-disable-next-line no-unused-vars
+import { FETCH_ANECDOTES, VOTE_ANECDOTE } from "../../type/anecdotes";
 
-const getId = () => (100000 * Math.random()).toFixed(0);
-
-const asObject = (anecdote) => {
-  return {
-    content: anecdote,
-    id: getId(),
-    votes: 0,
-  };
+const initialState = {
+  anecdotes: [],
 };
-
-const initialState = anecdotesAtStart.map(asObject);
 
 export const anecdoteReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_ANECDOTE":
-      return [...state];
-    case "VOTE_ANECDOTE":
-      return [...state, state + 1];
+    case FETCH_ANECDOTES:
+      console.log("PAYLOAD", action.payload);
+      return {
+        ...state,
+        anecdotes: action.payload,
+      };
+    default:
+      return state;
   }
-
-  return state;
 };
