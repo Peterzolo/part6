@@ -2,6 +2,7 @@ import { anecdotesAtStart } from "../../components/anecdotes/data";
 import {
   ADD_ANECDOTE,
   FETCH_ANECDOTES,
+  FILTER_ANECDOTE,
   VOTE_ANECDOTE,
 } from "../type/anecdotes";
 
@@ -40,11 +41,12 @@ export const addAnecdoteAction = (content) => {
     },
   };
 };
+
 export const filterAnecdoteAction = (filter) => {
   return {
-    type: ADD_ANECDOTE,
+    type: FILTER_ANECDOTE,
     data: {
-      payload: filter,
+      filter,
     },
   };
 };

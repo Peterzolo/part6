@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import Anecdote from "./components/anecdotes/Anecdote";
 import AnecdoteForm from "./components/anecdotes/AnecdoteForm";
 import FilterAnecdote from "./components/anecdotes/FilterAnecdote";
