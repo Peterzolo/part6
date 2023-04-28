@@ -14,15 +14,15 @@ const AnecdoteForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleAddAnecdote}>
-        <div className="create-wrapper">
-          <input
-            className="create-input"
-            type="text"
-            value={newAnecdote}
-            onChange={(e) => setNewAnecdote(e.target.value)}
-          />
-        </div>
+      <form className="form-wrap" onSubmit={handleAddAnecdote}>
+        <input
+          className="create-input"
+          type="text"
+          value={newAnecdote}
+          placeholder="Enter content here ..."
+          onChange={(e) => setNewAnecdote(e.target.value)}
+        />
+
         <button className="create-btn">create</button>
       </form>
     </div>
