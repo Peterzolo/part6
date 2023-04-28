@@ -23,7 +23,15 @@ const FilterAnecdote = () => {
   return (
     <div className="container">
       <div>
-        <input type="text" value={filter} onChange={handleChange} />
+        <div className="filter-wrap">
+          <input
+            className="filter-input"
+            placeholder="Enter your search query ..."
+            type="text"
+            value={filter}
+            onChange={handleChange}
+          />
+        </div>
 
         {anecdotes
           .filter(
