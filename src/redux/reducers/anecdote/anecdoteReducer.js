@@ -54,13 +54,11 @@ export const anecdoteReducer = (state = initialState, action) => {
   }
 };
 
-const filterReducer = (state = "", action) => {
+export const filterAnecdoteReducer = (state = "", action) => {
   switch (action.type) {
     case SET_FILTER:
-      return action.filter;
+      return action.payload;
     default:
       return state;
   }
 };
-
-export default filterReducer;
