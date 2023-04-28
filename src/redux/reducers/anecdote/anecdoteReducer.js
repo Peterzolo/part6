@@ -7,6 +7,7 @@ const getId = () => (100000 * Math.random()).toFixed(0);
 import {
   ADD_ANECDOTE,
   FETCH_ANECDOTES,
+  SET_FILTER,
   VOTE_ANECDOTE,
 } from "../../type/anecdotes";
 
@@ -52,3 +53,14 @@ export const anecdoteReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const filterReducer = (state = "", action) => {
+  switch (action.type) {
+    case SET_FILTER:
+      return action.filter;
+    default:
+      return state;
+  }
+};
+
+export default filterReducer;

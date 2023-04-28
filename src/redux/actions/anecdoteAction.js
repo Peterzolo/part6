@@ -40,3 +40,11 @@ export const addAnecdoteAction = (content) => {
     },
   };
 };
+export const filterAnecdoteAction = (filter) => {
+  return {
+    type: ADD_ANECDOTE,
+    data: {
+      payload: filter,
+    },
+  };
+};
