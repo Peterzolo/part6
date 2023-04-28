@@ -21,8 +21,6 @@ const Anecdote = () => {
 
   return (
     <div className="container">
-      <h2>Anecdotes</h2>
-
       <div>
         {anecdotes.map((anecdote) => (
           <div key={anecdote.id} className="anecdote-wrapper">

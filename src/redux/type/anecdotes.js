@@ -1,3 +1,4 @@
 export const FETCH_ANECDOTES = "FETCH_ANECDOTES";
 export const VOTE_ANECDOTE = "VOTE_ANECDOTE";
 export const ADD_ANECDOTE = "ADD_ANECDOTE";
+export const SET_FILTER = "SET_FILTER";
