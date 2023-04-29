@@ -1,19 +1,35 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addAnecdote } from "../../redux/reducers/anecdote/anecdoteReducer";
+import {
+  addAnecdote,
+  getId,
+} from "../../redux/reducers/anecdote/anecdoteReducer";
 import { showSuccess } from "../../redux/reducers/notification/notificationReducer";
+import { createAnecdote } from "../../services/anecdoteService";
 
 const AnecdoteForm = () => {
   const [newAnecdote, setNewAnecdote] = useState("");
   const dispatch = useDispatch();
 
-  const handleAddAnecdote = (event) => {
+  const handleAddAnecdote = async (event) => {
     event.preventDefault();
-    dispatch(addAnecdote({ content: newAnecdote }));
-    setTimeout(() => {
-      dispatch(showSuccess("Anecdote added successfully!"));
-    }, 1000);
-    setNewAnecdote("");
+
+    const anecdoteObject = {
+      content: newAnecdote,
+      id: getId(),
+      votes: 0,
+    };
+
+    try {
+      const newAnecdote = await createAnecdote(anecdoteObject);
+      dispatch(addAnecdote(newAnecdote));
+      setTimeout(() => {
+        dispatch(showSuccess(`Added anecdote "${newAnecdote.content}"`));
+      }, 1000);
+      setNewAnecdote("");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

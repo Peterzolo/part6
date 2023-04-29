@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import { anecdotesAtStart } from "../../../components/anecdotes/data";
 
-const getId = () => (100000 * Math.random()).toFixed(0);
+export const getId = () => (100000 * Math.random()).toFixed(0);
 
 // const asObject = (anecdote) => {
 //   return {
@@ -34,13 +34,13 @@ const anecdotesSlice = createSlice({
     },
 
     addAnecdote: (state, action) => {
-      const newAnecdote = {
-        id: getId(),
-        content: action.payload.content,
-        votes: 0,
-      };
-
-      state.anecdotes.push(newAnecdote);
+      // const newAnecdote = {
+      //   id: getId(),
+      //   content: action.payload.content,
+      //   votes: 0,
+      // };
+      // state.anecdotes.push(newAnecdote);
+      state.content = action.payload;
     },
     filterAnecdote: (state, action) => {
       state.filter = action.payload.filter;

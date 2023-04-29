@@ -9,6 +9,6 @@ export const getAllAnecdotes = async () => {
 
 export const createAnecdote = async (anecdoteObject) => {
   const response = await axios.post(baseUrl, anecdoteObject);
-  console.log("RESPONSE", response.data);
+  console.log("RESPONSE------", response.data);
   return response.data;
 };

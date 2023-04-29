@@ -11,7 +11,6 @@ import { getAllAnecdotes } from "../../services/anecdoteService";
 const Anecdote = () => {
   // eslint-disable-next-line no-unused-vars
   const { anecdotes } = useSelector((state) => state.anecdotes);
-  console.log("SET ANECDOTE", anecdotes);
   const dispatch = useDispatch();
 
   // eslint-disable-next-line no-unused-vars
@@ -32,7 +31,7 @@ const Anecdote = () => {
 
   return (
     <div className="container">
-      <div>
+      {/* <div>
         {anecdotes.map((anecdote) => (
           <div key={anecdote.id} className="anecdote-wrapper">
             <div className="content">{anecdote.content}</div>
@@ -47,7 +46,7 @@ const Anecdote = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
