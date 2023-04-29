@@ -8,10 +8,6 @@ const Notification = () => {
   const success = useSelector((state) => state.notification.notification);
   const dispatch = useDispatch();
 
-  // if (!notification) {
-  //   return null;
-  // }
-
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(hideNotification());

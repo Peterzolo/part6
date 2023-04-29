@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { anecdotesAtStart } from "../../../components/anecdotes/data";
+// import { anecdotesAtStart } from "../../../components/anecdotes/data";
 
 const getId = () => (100000 * Math.random()).toFixed(0);
 
-const asObject = (anecdote) => {
-  return {
-    content: anecdote,
-    id: getId(),
-    votes: 0,
-  };
-};
+// const asObject = (anecdote) => {
+//   return {
+//     content: anecdote,
+//     id: getId(),
+//     votes: 0,
+//   };
+// };
 
 const initialState = {
-  anecdotes: anecdotesAtStart.map(asObject),
+  anecdotes: [],
   filter: "",
 };
 
@@ -20,8 +20,8 @@ const anecdotesSlice = createSlice({
   name: "anecdotes",
   initialState,
   reducers: {
-    fetchAnecdotes: (state) => {
-      state.anecdotes.sort((a, b) => b.votes - a.votes);
+    fetchAnecdotes: (state, action) => {
+      state.anecdotes = action.payload;
     },
     voteAnecdote: (state, action) => {
       const id = action.payload.id;
@@ -34,13 +34,12 @@ const anecdotesSlice = createSlice({
     },
 
     addAnecdote: (state, action) => {
-      console.log("ACTION", action.payload);
       const newAnecdote = {
         id: getId(),
         content: action.payload.content,
         votes: 0,
       };
-      console.log("kjkj", newAnecdote);
+
       state.anecdotes.push(newAnecdote);
     },
     filterAnecdote: (state, action) => {
