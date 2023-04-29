@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { filterAnecdote } from "../../redux/reducers/anecdote/anecdoteReducer";
 import { voteAnecdoteActionCreator } from "../../redux/actions/anecdoteAction";
+import { showSuccess } from "../../redux/reducers/notification/notificationReducer";
 
 const FilterAnecdote = () => {
   const dispatch = useDispatch();
@@ -8,7 +9,14 @@ const FilterAnecdote = () => {
   const filter = useSelector((state) => state.anecdotes.filter);
 
   const handleVote = (id) => {
-    dispatch(voteAnecdoteActionCreator({ id }));
+    try {
+      dispatch(voteAnecdoteActionCreator({ id }));
+      setTimeout(() => {
+        dispatch(showSuccess("You have voted anecdote"));
+      }, 5000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (event) => {
