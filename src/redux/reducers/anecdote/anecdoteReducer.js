@@ -1,64 +1,55 @@
-/* eslint-disable no-case-declarations */
-/* eslint-disable indent */
+import { createSlice } from "@reduxjs/toolkit";
+import { anecdotesAtStart } from "../../../components/anecdotes/data";
 
-// eslint-disable-next-line no-unused-vars
 const getId = () => (100000 * Math.random()).toFixed(0);
 
-import {
-  ADD_ANECDOTE,
-  FETCH_ANECDOTES,
-  FILTER_ANECDOTE,
-  VOTE_ANECDOTE,
-} from "../../type/anecdotes";
-
-const initialState = {
-  anecdotes: [],
+const asObject = (anecdote) => {
+  return {
+    content: anecdote,
+    id: getId(),
+    votes: 0,
+  };
 };
 
-export const anecdoteReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_ANECDOTES:
-      return {
-        ...state,
-        anecdotes: action.payload,
-      };
-    case VOTE_ANECDOTE:
-      const id = action.data.id;
+const initialState = {
+  anecdotes: anecdotesAtStart.map(asObject),
+  filter: "",
+};
+
+const anecdotesSlice = createSlice({
+  name: "anecdotes",
+  initialState,
+  reducers: {
+    fetchAnecdotes: (state) => {
+      state.anecdotes.sort((a, b) => b.votes - a.votes);
+    },
+    voteAnecdote: (state, action) => {
+      const id = action.payload.id;
       const anecdoteToVote = state.anecdotes.find(
         (anecdote) => anecdote.id === id
       );
-      const updatedAnecdote = {
-        ...anecdoteToVote,
-        votes: anecdoteToVote.votes + 1,
-      };
-      return {
-        ...state,
-        anecdotes: state.anecdotes
-          .map((anecdote) => (anecdote.id !== id ? anecdote : updatedAnecdote))
-          .sort((a, b) => b.votes - a.votes),
-      };
+      if (anecdoteToVote) {
+        anecdoteToVote.votes += 1;
+      }
+    },
 
-    case ADD_ANECDOTE:
+    addAnecdote: (state, action) => {
+      console.log("ACTION", action.payload);
       const newAnecdote = {
         id: getId(),
-        content: action.data.content,
+        content: action.payload.content,
         votes: 0,
       };
-      return {
-        ...state,
-        anecdotes: [...state.anecdotes, newAnecdote],
-      };
+      console.log("kjkj", newAnecdote);
+      state.anecdotes.push(newAnecdote);
+    },
+    filterAnecdote: (state, action) => {
+      state.filter = action.payload.filter;
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export const { fetchAnecdotes, voteAnecdote, addAnecdote, filterAnecdote } =
+  anecdotesSlice.actions;
 
-export const filterAnecdoteReducer = (state = "", action) => {
-  switch (action.type) {
-    case FILTER_ANECDOTE:
-      return action.data.filter;
-    default:
-      return state;
-  }
-};
+export default anecdotesSlice.reducer;

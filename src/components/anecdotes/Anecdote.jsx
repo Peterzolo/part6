@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import "../anecdotes/Anecdotes.css";
 import {
   fetchAnecdotes,
-  voteAnecdoteAction,
-} from "../../redux/actions/anecdoteAction";
+  voteAnecdote,
+} from "../../redux/reducers/anecdote/anecdoteReducer";
 
 const Anecdote = () => {
-  const { anecdotes } = useSelector((state) => state.anecdotes);
-  console.log("ANECDOTES.ANECDOTES", anecdotes);
+  // eslint-disable-next-line no-unused-vars
+  const anecdotes = useSelector((state) => state.anecdotes);
   const dispatch = useDispatch();
 
   // eslint-disable-next-line no-unused-vars
   const handleVote = (id) => {
-    dispatch(voteAnecdoteAction(id));
+    dispatch(voteAnecdote(id));
   };
 
   useEffect(() => {

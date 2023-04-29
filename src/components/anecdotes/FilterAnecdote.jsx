@@ -1,24 +1,24 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  filterAnecdoteAction,
-  voteAnecdoteAction,
-} from "../../redux/actions/anecdoteAction";
+  filterAnecdote,
+  voteAnecdote,
+} from "../../redux/reducers/anecdote/anecdoteReducer";
 
 const FilterAnecdote = () => {
   const dispatch = useDispatch();
-  const { anecdotes } = useSelector((state) => state.anecdotes);
-  console.log("ANECDOTES", anecdotes);
+  const anecdotes = useSelector((state) => state.anecdotes);
   const filter = useSelector((state) => state.filter);
 
   const handleVote = (id) => {
-    dispatch(voteAnecdoteAction(id));
+    dispatch(voteAnecdote({ id }));
   };
 
   const handleChange = (event) => {
-    dispatch(filterAnecdoteAction(event.target.value));
-    console.log("EVENT", event.target.value);
+    dispatch(filterAnecdote({ filter: event.target.value }));
   };
+
+  // sort anecdotes by vote count before rendering
+  const sortedAnecdotes = [...anecdotes].sort((a, b) => b.votes - a.votes);
 
   return (
     <div className="container">
@@ -33,7 +33,7 @@ const FilterAnecdote = () => {
           />
         </div>
 
-        {anecdotes
+        {sortedAnecdotes
           .filter(
             (anecdote) => anecdote.content && anecdote.content.includes(filter)
           )

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { addAnecdoteAction } from "../../redux/actions/anecdoteAction";
 import { useDispatch } from "react-redux";
+import { addAnecdote } from "../../redux/reducers/anecdote/anecdoteReducer";
 
 const AnecdoteForm = () => {
   const [newAnecdote, setNewAnecdote] = useState("");
@@ -8,7 +8,7 @@ const AnecdoteForm = () => {
 
   const handleAddAnecdote = (event) => {
     event.preventDefault();
-    dispatch(addAnecdoteAction(newAnecdote));
+    dispatch(addAnecdote({ content: newAnecdote }));
     setNewAnecdote("");
   };
 
