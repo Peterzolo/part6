@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addAnecdote } from "../../redux/reducers/anecdote/anecdoteReducer";
+import { showSuccess } from "../../redux/reducers/notification/notificationReducer";
 
 const AnecdoteForm = () => {
   const [newAnecdote, setNewAnecdote] = useState("");
@@ -9,6 +10,9 @@ const AnecdoteForm = () => {
   const handleAddAnecdote = (event) => {
     event.preventDefault();
     dispatch(addAnecdote({ content: newAnecdote }));
+    setTimeout(() => {
+      dispatch(showSuccess("Anecdote added successfully!"));
+    }, 1000);
     setNewAnecdote("");
   };
 
