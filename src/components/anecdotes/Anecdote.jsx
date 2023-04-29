@@ -2,11 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "../anecdotes/Anecdotes.css";
-import {
-  fetchAnecdotes,
-  voteAnecdote,
-} from "../../redux/reducers/anecdote/anecdoteReducer";
-import { getAllAnecdotes } from "../../services/anecdoteService";
+import { voteAnecdote } from "../../redux/reducers/anecdote/anecdoteReducer";
+import { fetchInitialAnecdotes } from "../../redux/actions/anecdoteAction";
 
 const Anecdote = () => {
   // eslint-disable-next-line no-unused-vars
@@ -19,14 +16,7 @@ const Anecdote = () => {
   };
 
   useEffect(() => {
-    getAllAnecdotes()
-      .then((response) => {
-        console.log("RESPONSE IN COMPONENT", response);
-        dispatch(fetchAnecdotes(response));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch(fetchInitialAnecdotes());
   }, [dispatch]);
 
   return (
