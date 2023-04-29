@@ -9,7 +9,7 @@ import {
 
 const Anecdote = () => {
   // eslint-disable-next-line no-unused-vars
-  const anecdotes = useSelector((state) => state.anecdotes);
+  const { anecdotes } = useSelector((state) => state.anecdotes);
   const dispatch = useDispatch();
 
   // eslint-disable-next-line no-unused-vars

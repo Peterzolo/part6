@@ -6,8 +6,8 @@ import {
 
 const FilterAnecdote = () => {
   const dispatch = useDispatch();
-  const anecdotes = useSelector((state) => state.anecdotes);
-  const filter = useSelector((state) => state.filter);
+  const { anecdotes } = useSelector((state) => state.anecdotes);
+  const filter = useSelector((state) => state.anecdotes.filter);
 
   const handleVote = (id) => {
     dispatch(voteAnecdote({ id }));

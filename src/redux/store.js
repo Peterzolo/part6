@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import anecdoteReducer from "./reducers/anecdote/anecdoteReducer";
+import { rootReducer } from "./reducers/rootReducer";
 
 const store = configureStore({
-  reducer: anecdoteReducer,
+  reducer: rootReducer,
 });
 
 export default store;
