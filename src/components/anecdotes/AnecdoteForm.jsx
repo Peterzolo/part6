@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addAnecdote,
-  getId,
-} from "../../redux/reducers/anecdote/anecdoteReducer";
+import { getId } from "../../redux/reducers/anecdote/anecdoteReducer";
 import { showSuccess } from "../../redux/reducers/notification/notificationReducer";
-import { createAnecdote } from "../../services/anecdoteService";
+
+import { createAnecdoteAction } from "../../redux/actions/anecdoteAction";
 
 const AnecdoteForm = () => {
   const [newAnecdote, setNewAnecdote] = useState("");
@@ -21,10 +19,9 @@ const AnecdoteForm = () => {
     };
 
     try {
-      const newAnecdote = await createAnecdote(anecdoteObject);
-      dispatch(addAnecdote(newAnecdote));
+      dispatch(createAnecdoteAction(anecdoteObject));
       setTimeout(() => {
-        dispatch(showSuccess(`Added anecdote "${newAnecdote.content}"`));
+        dispatch(showSuccess(`Added anecdote "${anecdoteObject.content}"`));
       }, 1000);
       setNewAnecdote("");
     } catch (error) {
