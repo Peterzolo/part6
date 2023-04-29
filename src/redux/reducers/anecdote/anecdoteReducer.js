@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { voteAnecdoteAction } from "../../../services/anecdoteService";
 
 export const getId = () => (100000 * Math.random()).toFixed(0);
 
@@ -22,6 +23,7 @@ const anecdotesSlice = createSlice({
       if (anecdoteToVote) {
         anecdoteToVote.votes += 1;
       }
+      voteAnecdoteAction(anecdoteToVote);
     },
 
     addAnecdote: (state, action) => {

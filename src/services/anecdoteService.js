@@ -12,3 +12,8 @@ export const createAnecdote = async (anecdoteObject) => {
   console.log("RESPONSE------", response.data);
   return response.data;
 };
+
+export const voteAnecdoteAction = async (anecdote) => {
+  const response = await axios.put(`${baseUrl}/${anecdote.id}`, anecdote);
+  return response.data;
+};

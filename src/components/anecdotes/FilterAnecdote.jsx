@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterAnecdote,
-  voteAnecdote,
-} from "../../redux/reducers/anecdote/anecdoteReducer";
+import { filterAnecdote } from "../../redux/reducers/anecdote/anecdoteReducer";
+import { voteAnecdoteActionCreator } from "../../redux/actions/anecdoteAction";
 
 const FilterAnecdote = () => {
   const dispatch = useDispatch();
@@ -10,14 +8,13 @@ const FilterAnecdote = () => {
   const filter = useSelector((state) => state.anecdotes.filter);
 
   const handleVote = (id) => {
-    dispatch(voteAnecdote({ id }));
+    dispatch(voteAnecdoteActionCreator({ id }));
   };
 
   const handleChange = (event) => {
     dispatch(filterAnecdote({ filter: event.target.value }));
   };
 
-  // sort anecdotes by vote count before rendering
   const sortedAnecdotes = [...anecdotes].sort((a, b) => b.votes - a.votes);
 
   return (
